@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GithubUI</string>
+    <string name="search">Pencarian</string>
+
+    <string name="Username">Nama Pengguna </string>
+    <string name="company">Perusahaan</string>
+
+    <string name="btnSearch">Cari</string>
+
+    <string name="typeUser">Tipe</string>
+    <string name="userName">Nama</string>
+
+    <string name="followers">Pengikut</string>
+    <string name="_20">20</string>
+
+    <string name="titleDetail">Detail Pengguna</string>
+    <string name="change_language_setting">Ubah Pengaturan Bahasa</string>
+    <string name="following">Mengikuti</string>
+    <string name="location">Lokasi</string>
+
+    <string name="tab_title_1">Pengikut</string>
+    <string name="tab_title_2">Mengikuti</string>
+    <string name="name">Name</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="settings">Settings</string>
+    <string name="search_hint">Username</string>
+
+</resources>
