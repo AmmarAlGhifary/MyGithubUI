@@ -1,37 +1,45 @@
-package com.blogspot.yourfavoritekaisar.mygithubui.model
+package com.blogspot.yourfavoritekaisar.mygithubui.ui.detail
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.blogspot.yourfavoritekaisar.mygithubui.model.DetailViewModel.Companion.TOKEN
+import com.blogspot.yourfavoritekaisar.mygithubui.BuildConfig
+import com.blogspot.yourfavoritekaisar.mygithubui.model.User
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
-import com.loopj.android.http.BuildConfig
 import cz.msebera.android.httpclient.Header
 import org.json.JSONObject
 import java.lang.Exception
 
 class DetailViewModel : ViewModel() {
 
-    companion object {
-        private const val TOKEN = "token 1f8d83c7d2b55d56bdbf1db91da561649086563f"
-    }
+//    companion object {
+//        private const val TOKEN = "token 1f8d83c7d2b55d56bdbf1db91da561649086563f"
+//    }
+
     val detailUser = MutableLiveData<ArrayList<User>>()
 
     fun setDetail(username: String) {
-        val url = "https://api.github.com/users/$username"
         val detailItems = ArrayList<User>()
 
+        val url = BuildConfig.BASE_URL + "users/$username"
+        val token = BuildConfig.TOKEN
+
         val client = AsyncHttpClient()
-        client.addHeader("Authorization", TOKEN)
+        client.addHeader("Authorization", "token $token")
         client.addHeader("User-Agent", "request")
         client.get(url, object : AsyncHttpResponseHandler() {
-            override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?) {
+            override fun onSuccess(
+                statusCode: Int,
+                headers: Array<out Header>?,
+                responseBody: ByteArray?
+            ) {
                 try {
                     val result = String(responseBody!!)
                     val responseObject = JSONObject(result)
-                    val userItems = User()
+                    val userItems =
+                        User()
                     userItems.apply {
                         login = responseObject.getString("login")
                         name = responseObject.getString("name")

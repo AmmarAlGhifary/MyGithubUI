@@ -5,16 +5,18 @@
 
     <string name="Username">Nama Pengguna </string>
     <string name="company">Perusahaan</string>
+    <string name="empty">Kosong</string>
 
     <string name="btnSearch">Cari</string>
-
     <string name="typeUser">Tipe</string>
     <string name="userName">Nama</string>
 
     <string name="followers">Pengikut</string>
+    <string name="favorite_title">Pengguna Favorite</string>
     <string name="_20">20</string>
-
     <string name="titleDetail">Detail Pengguna</string>
+    <string name="home_title">Pengguna Github</string>
+
     <string name="change_language_setting">Ubah Pengaturan Bahasa</string>
     <string name="following">Mengikuti</string>
     <string name="location">Lokasi</string>
@@ -22,10 +24,24 @@
     <string name="tab_title_1">Pengikut</string>
     <string name="tab_title_2">Mengikuti</string>
     <string name="name">Name</string>
+    <string name="favorite">Favorite</string>
+    <string name="unfavorite">Unfavorite</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="settings">Settings</string>
     <string name="search_hint">Username</string>
+
+    <string name="night_mode_enable">Mode Malam : Aktif</string>
+    <string name="night_mode_disable">Mode Malam : Tidak Aktif</string>
+
+    <string name="theme_header">Tema</string>
+    <string name="reminder_header">Pengingat</string>
+
+    <string name="reminder_summary">Aktifkan untuk menjalankan pengingat</string>
+    <string name="theme_summary">Aktifkan untuk menjalankan mode gelap</string>
+
+    <string name="reminder_enable">Pengingat : Aktif</string>
+    <string name="reminder_disable">Pengingat : Tidak Aktif</string>
+    <string name="reminder_message">Jangan lupa melihat pengguna favorit Anda hari ini!</string>
+
 
 </resources>

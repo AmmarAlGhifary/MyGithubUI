@@ -4,6 +4,8 @@
     <string name="search">Search</string>
     <string name="Username">Username </string>
     <string name="company">Company</string>
+    <string name="empty">Empty</string>
+
 
     <string name="btnSearch">Search</string>
     <string name="typeUser">Type</string>
@@ -12,17 +14,35 @@
     <string name="followers">Followers</string>
     <string name="titleDetail">User Detail</string>
     <string name="_20">20</string>
+    <string name="favorite_title">Favorite Users</string>
     <string name="change_language_setting">Change Language Setting</string>
 
     <string name="following">Following</string>
     <string name="location">Location</string>
+    <string name="favorite">Favorite</string>
+    <string name="home_title">Github Users</string>
+    <string name="unfavorite">Unfavorite</string>
+
 
     <string name="tab_title_1">Followers</string>
     <string name="tab_title_2">Following</string>
     <string name="name">Name</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="settings">Settings</string>
     <string name="search_hint">Username</string>
+
+    <string name="night_mode_enable">Night Mode : Enable</string>
+    <string name="night_mode_disable">Night Mode : Disable</string>
+
+    <!-- Preference Titles -->
+    <string name="theme_header">Themes</string>
+    <string name="reminder_header">Reminder</string>
+
+    <string name="reminder_summary">Enable to activate reminder</string>
+    <string name="theme_summary">Enable to activate dark mode</string>
+
+    <string name="reminder_enable">Reminder : Enable</string>
+    <string name="reminder_disable">Reminder : Disable</string>
+    <string name="reminder_message">Don\'t forget to see your favorite users today!</string>
+
 </resources>

@@ -10,8 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blogspot.yourfavoritekaisar.mygithubui.R
 import com.blogspot.yourfavoritekaisar.mygithubui.adapter.ListAdapter
-import com.blogspot.yourfavoritekaisar.mygithubui.model.FollowersViewModel
-import com.blogspot.yourfavoritekaisar.mygithubui.model.FollowingViewModel
 import kotlinx.android.synthetic.main.fragment_followers_and_following.*
 
 class FollowersNFollowingFragment : Fragment() {

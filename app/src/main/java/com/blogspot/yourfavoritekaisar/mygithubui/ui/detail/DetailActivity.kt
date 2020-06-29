@@ -1,4 +1,4 @@
-package com.blogspot.yourfavoritekaisar.mygithubui.ui.activity
+package com.blogspot.yourfavoritekaisar.mygithubui.ui.detail
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.blogspot.yourfavoritekaisar.mygithubui.R
 import com.blogspot.yourfavoritekaisar.mygithubui.adapter.DetailAdapter
 import com.blogspot.yourfavoritekaisar.mygithubui.adapter.PagerAdapter
-import com.blogspot.yourfavoritekaisar.mygithubui.model.DetailViewModel
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.tab_layout.*
 
