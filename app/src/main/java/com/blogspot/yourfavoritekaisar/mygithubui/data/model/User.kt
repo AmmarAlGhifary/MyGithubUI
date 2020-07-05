@@ -1,4 +1,4 @@
-package com.blogspot.yourfavoritekaisar.mygithubui.model
+package com.blogspot.yourfavoritekaisar.mygithubui.data.model
 
 data class User(
     var name: String? = null,

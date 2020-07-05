@@ -12,7 +12,7 @@
     <string name="userName">Name</string>
 
     <string name="followers">Followers</string>
-    <string name="titleDetail">User Detail</string>
+    <string name="title_detail">User Detail</string>
     <string name="_20">20</string>
     <string name="favorite_title">Favorite Users</string>
     <string name="change_language_setting">Change Language Setting</string>
@@ -30,6 +30,7 @@
 
     <string name="settings">Settings</string>
     <string name="search_hint">Username</string>
+    <string name="alarm">Alarm</string>
 
     <string name="night_mode_enable">Night Mode : Enable</string>
     <string name="night_mode_disable">Night Mode : Disable</string>

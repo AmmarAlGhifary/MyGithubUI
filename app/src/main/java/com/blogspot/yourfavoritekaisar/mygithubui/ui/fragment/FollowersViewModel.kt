@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.blogspot.yourfavoritekaisar.mygithubui.BuildConfig
-import com.blogspot.yourfavoritekaisar.mygithubui.model.User
+import com.blogspot.yourfavoritekaisar.mygithubui.data.model.User
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
 import cz.msebera.android.httpclient.Header
@@ -41,7 +41,8 @@ class FollowersViewModel : ViewModel() {
                     val responseArray = JSONArray(result)
                     for (i in 0 until responseArray.length()) {
                         val followers = responseArray.getJSONObject(i)
-                        val followersItem = User()
+                        val followersItem =
+                            User()
                         followersItem.login = followers.getString("login")
                         followersItem.avatars = followers.getString("avatar_url")
                         followersItem.type = followers.getString("type")

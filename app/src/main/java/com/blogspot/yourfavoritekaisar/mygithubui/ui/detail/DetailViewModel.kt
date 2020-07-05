@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.blogspot.yourfavoritekaisar.mygithubui.BuildConfig
-import com.blogspot.yourfavoritekaisar.mygithubui.model.User
+import com.blogspot.yourfavoritekaisar.mygithubui.data.model.User
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
 import cz.msebera.android.httpclient.Header
@@ -13,11 +13,6 @@ import org.json.JSONObject
 import java.lang.Exception
 
 class DetailViewModel : ViewModel() {
-
-//    companion object {
-//        private const val TOKEN = "token 1f8d83c7d2b55d56bdbf1db91da561649086563f"
-//    }
-
     val detailUser = MutableLiveData<ArrayList<User>>()
 
     fun setDetail(username: String) {

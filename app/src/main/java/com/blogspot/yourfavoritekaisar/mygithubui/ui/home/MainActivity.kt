@@ -1,10 +1,9 @@
-package com.blogspot.yourfavoritekaisar.mygithubui.ui.activity
+package com.blogspot.yourfavoritekaisar.mygithubui.ui.home
 
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -14,6 +13,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blogspot.yourfavoritekaisar.mygithubui.R
+import com.blogspot.yourfavoritekaisar.mygithubui.ui.favorite.FavoriteActivity
+import com.blogspot.yourfavoritekaisar.mygithubui.ui.settings.AlarmActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        title = "Home"
         userAdapter = com.blogspot.yourfavoritekaisar.mygithubui.adapter.ListAdapter()
 
         rv_user.setHasFixedSize(true)
@@ -85,14 +86,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.settings) {
-            val mIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
-            startActivity(mIntent)
+        return when (item.itemId) {
+            R.id.alarm -> {
+                val intent = Intent(this, AlarmActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.main_favorite -> {
+                val intent = Intent(this, FavoriteActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
     }
-
-
 }

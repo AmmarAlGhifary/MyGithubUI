@@ -14,7 +14,8 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
+        buildConfigField "String", "BASE_URL", '"https://api.github.com/"'
+        buildConfigField "String", "TOKEN", '"bfbd66a474fc145571ecbdb19f273f0caea65184"'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

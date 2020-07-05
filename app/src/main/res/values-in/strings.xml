@@ -14,7 +14,7 @@
     <string name="followers">Pengikut</string>
     <string name="favorite_title">Pengguna Favorite</string>
     <string name="_20">20</string>
-    <string name="titleDetail">Detail Pengguna</string>
+    <string name="title_detail">Detail Pengguna</string>
     <string name="home_title">Pengguna Github</string>
 
     <string name="change_language_setting">Ubah Pengaturan Bahasa</string>
@@ -28,7 +28,8 @@
     <string name="unfavorite">Unfavorite</string>
 
     <string name="settings">Settings</string>
-    <string name="search_hint">Username</string>
+    <string name="search_hint">Pengguna</string>
+    <string name="alarm">Alarm</string>
 
     <string name="night_mode_enable">Mode Malam : Aktif</string>
     <string name="night_mode_disable">Mode Malam : Tidak Aktif</string>

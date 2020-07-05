@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.blogspot.yourfavoritekaisar.mygithubui.R
-import com.blogspot.yourfavoritekaisar.mygithubui.model.User
+import com.blogspot.yourfavoritekaisar.mygithubui.data.model.User
 import com.blogspot.yourfavoritekaisar.mygithubui.ui.detail.DetailActivity
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_user.view.*
@@ -41,9 +41,9 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
             with(itemView) {
                 Glide.with(context)
                     .load(user.avatars)
-                    .into(imgUser)
+                    .into(img_user)
 
-                tv_username.text = user.login
+                tv_user.text = user.login
                 itemView.setOnClickListener {
                     Intent(context, DetailActivity::class.java).apply {
                         putExtra(DetailActivity.EXTRA_USERNAME, user.login)

@@ -1,11 +1,11 @@
-package com.blogspot.yourfavoritekaisar.mygithubui.ui.activity
+package com.blogspot.yourfavoritekaisar.mygithubui.ui.home
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.blogspot.yourfavoritekaisar.mygithubui.BuildConfig
-import com.blogspot.yourfavoritekaisar.mygithubui.model.User
+import com.blogspot.yourfavoritekaisar.mygithubui.data.model.User
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
 import cz.msebera.android.httpclient.Header
