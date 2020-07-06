@@ -41,6 +41,11 @@ class AlarmActivity : AppCompatActivity(), View.OnClickListener, DatePicker.Dial
         btn_cancel_alarm.setOnClickListener(this)
 
         alarmReceiver = AlarmReceiver()
+
+        val actionBar = supportActionBar
+        actionBar!!.setDisplayHomeAsUpEnabled(true)
+        actionBar.setDisplayHomeAsUpEnabled(true)
+
     }
 
     override fun onClick(v: View?) {
@@ -109,5 +114,10 @@ class AlarmActivity : AppCompatActivity(), View.OnClickListener, DatePicker.Dial
             else -> {
             }
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
