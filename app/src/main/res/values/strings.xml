@@ -31,6 +31,15 @@
     <string name="settings">Settings</string>
     <string name="search_hint">Username</string>
     <string name="alarm">Alarm</string>
+    <string name="alarm_date">Alarm Date</string>
+    <string name="alarm_time">Alarm Time</string>
+    <string name="alarm_message">Alarm Message</string>
+    <string name="set_one_time_alarm">Set One Time Alarm</string>
+    <string name="button_set_language">Language Settings</string>
+    <string name="repeating_alarm">Repeating Alarm</string>
+    <string name="cancel_alarm">Cancel Alarm</string>
+    <string name="set_repeating_alarm">Set Repeating Alarm</string>
+
 
     <string name="night_mode_enable">Night Mode : Enable</string>
     <string name="night_mode_disable">Night Mode : Disable</string>

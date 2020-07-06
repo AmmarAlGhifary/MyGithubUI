@@ -20,9 +20,9 @@ internal class DatabaseHelper(context: Context) :
 
         private const val SQL_CREATE_TABLE_FAVORITE_USER = "CREATE TABLE $TABLE_NAME" +
                 " ($_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " $LOGIN TEXT NOT NUll," +
+                " $LOGIN TEXT NOT NULL," +
                 " $AVATAR_URL TEXT NOT NULL," +
-                " $TYPE TEXT NOT NULL"
+                " $TYPE TEXT NOT NULL)"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {

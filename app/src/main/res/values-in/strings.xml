@@ -30,6 +30,15 @@
     <string name="settings">Settings</string>
     <string name="search_hint">Pengguna</string>
     <string name="alarm">Alarm</string>
+    <string name="alarm_date">Tanngal Alarm</string>
+    <string name="alarm_time">Waktu Alarm</string>
+    <string name="alarm_message">Pesan</string>
+    <string name="set_one_time_alarm">Pasang Alarm Sekali</string>
+    <string name="button_set_language">Pengaturan Bahasa</string>
+    <string name="repeating_alarm">Alarm Berulang</string>
+    <string name="cancel_alarm">Batalkan Alarm</string>
+    <string name="set_repeating_alarm">Pasang Alarm Berulang</string>
+
 
     <string name="night_mode_enable">Mode Malam : Aktif</string>
     <string name="night_mode_disable">Mode Malam : Tidak Aktif</string>
@@ -43,6 +52,5 @@
     <string name="reminder_enable">Pengingat : Aktif</string>
     <string name="reminder_disable">Pengingat : Tidak Aktif</string>
     <string name="reminder_message">Jangan lupa melihat pengguna favorit Anda hari ini!</string>
-
 
 </resources>
