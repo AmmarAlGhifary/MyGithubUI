@@ -3,12 +3,14 @@ package com.blogspot.yourfavoritekaisar.mygithubui.alarm
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.content.Context
+import android.icu.util.Calendar
+import android.os.Build
 import android.os.Bundle
 import android.widget.TimePicker
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
-import java.util.*
 
-class TimePicker : DialogFragment(), TimePickerDialog.OnTimeSetListener {
+class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {
 
     private var mListener: DialogTimeListener? = null
 
@@ -24,12 +26,12 @@ class TimePicker : DialogFragment(), TimePickerDialog.OnTimeSetListener {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val calendar = Calendar.getInstance()
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
         val minute = calendar.get(Calendar.MINUTE)
         val formatHour24 = true
-
         return TimePickerDialog(activity, this, hour, minute, formatHour24)
     }
 

@@ -30,7 +30,7 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var detailAdapter: DetailAdapter
     private lateinit var favoriteUserHelper: FavoriteUserHelper
 
-    private lateinit var username: String
+    private lateinit var login: String
     private lateinit var avatarUrl: String
     private lateinit var type: String
 
@@ -103,12 +103,12 @@ class DetailActivity : AppCompatActivity() {
 
     private fun addFavoriteUser() {
         try {
-            username = intent?.getStringExtra(EXTRA_USERNAME).toString()
+            login = intent?.getStringExtra(EXTRA_USERNAME).toString()
             avatarUrl = intent?.getStringExtra(EXTRA_AVATAR_URL).toString()
             type = intent?.getStringExtra(EXTRA_TYPE).toString()
 
             val values = ContentValues().apply {
-                put(DatabaseContract.FavoriteUserColumns.LOGIN, username)
+                put(DatabaseContract.FavoriteUserColumns.LOGIN, login)
                 put(DatabaseContract.FavoriteUserColumns.AVATAR_URL, avatarUrl)
                 put(DatabaseContract.FavoriteUserColumns.TYPE, type)
             }
@@ -123,8 +123,8 @@ class DetailActivity : AppCompatActivity() {
 
     private fun removeFavoriteUser() {
         try {
-            username = intent?.getStringExtra(EXTRA_USERNAME).toString()
-            val result = favoriteUserHelper.deleteByLogin(username)
+            login = intent?.getStringExtra(EXTRA_USERNAME).toString()
+            val result = favoriteUserHelper.deleteByLogin(login)
 
             showSnackbarMessage("Removed to favorite")
             Log.d("REMOVE VALUES ::::: ", result.toString())
@@ -134,8 +134,8 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun favoriteState() {
-        username = intent?.getStringExtra(EXTRA_USERNAME).toString()
-        val result = favoriteUserHelper.queryByLogin(username)
+        login = intent?.getStringExtra(EXTRA_USERNAME).toString()
+        val result = favoriteUserHelper.queryByLogin(login)
         val favorite = (1..result.count).map {
             result.apply {
                 moveToNext()
