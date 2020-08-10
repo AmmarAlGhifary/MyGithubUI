@@ -1,122 +1,66 @@
 package com.blogspot.yourfavoritekaisar.mygithubui.ui.settings
-
+import android.content.Context
 import android.content.Intent
-import android.icu.util.Calendar
-import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.view.View
-import androidx.annotation.RequiresApi
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.blogspot.yourfavoritekaisar.mygithubui.R
 import com.blogspot.yourfavoritekaisar.mygithubui.alarm.AlarmReceiver
-import com.blogspot.yourfavoritekaisar.mygithubui.alarm.DatePickerFragment
-import com.blogspot.yourfavoritekaisar.mygithubui.alarm.TimePickerFragment
 import kotlinx.android.synthetic.main.activity_alarm.*
-import java.text.SimpleDateFormat
-import java.util.*
 
-class AlarmActivity : AppCompatActivity(),
-    View.OnClickListener,
-    DatePickerFragment.DialogDateListener,
-    TimePickerFragment.DialogTimeListener {
+class AlarmActivity : AppCompatActivity() {
 
     private lateinit var alarmReceiver: AlarmReceiver
 
     companion object {
-        private const val DATE_PICKER_TAG = "DatePicker"
-        private const val TIME_PICKER_ONCE_TAG = "TimePickerOnce"
-        private const val TIME_PICKER_REPEAT_TAG = "TimePickerRepeat"
+        const val SHARED_PREFERENCE = "sharedpreference"
+        const val BOOLEAN_KEY = "booleankey"
+        internal val TAG = AlarmActivity::class.java.simpleName
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alarm)
 
-        btn_once_date.setOnClickListener(this)
-        btn_once_time.setOnClickListener(this)
-        btn_set_once_alarm.setOnClickListener(this)
-
-        btn_repeating_time.setOnClickListener(this)
-        btn_set_repeating_alarm.setOnClickListener(this)
-
-        btn_cancel_repeating_alarm.setOnClickListener(this)
-        btn_language.setOnClickListener(this)
-
         alarmReceiver = AlarmReceiver()
 
-    }
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            title = resources.getString(R.string.alarm)
+        }
 
-    override fun onClick(v: View?) {
-        when (v!!.id) {
-            R.id.btn_once_date -> {
-                val datePickerFragment = DatePickerFragment()
-                datePickerFragment.show(supportFragmentManager, DATE_PICKER_TAG)
-            }
-            R.id.btn_once_time -> {
-                val timePickerFragmentOne = TimePickerFragment()
-                timePickerFragmentOne.show(supportFragmentManager, TIME_PICKER_ONCE_TAG)
+        val sharedPreferences = getSharedPreferences(SHARED_PREFERENCE, Context.MODE_PRIVATE)
 
-            }
-            R.id.btn_set_once_alarm -> {
-                val onceDate = tv_once_date.text.toString()
-                val onceTime = tv_once_time.text.toString()
-                val onceMessage = edt_once_message.text.toString()
+        val getBoolean = sharedPreferences.getBoolean(BOOLEAN_KEY, false)
+        checkbox_alarm.isChecked = getBoolean
 
-                alarmReceiver.setOneTimeAlarm(
-                    this,
-                    AlarmReceiver.TYPE_ONE_TIME,
-                    onceDate,
-                    onceTime,
-                    onceMessage
-                )
-            }
-            R.id.btn_repeating_time -> {
-                val timePickerFragmentRepeat = TimePickerFragment()
-                timePickerFragmentRepeat.show(supportFragmentManager, TIME_PICKER_REPEAT_TAG)
-            }
-            R.id.btn_set_repeating_alarm -> {
-                val repeatTime = tv_repeating_time.toString()
-                val repeatMessage = edt_repeating_message.toString()
+        checkbox_alarm.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                val editor = sharedPreferences.edit()
+                editor.apply {
+                    putBoolean(BOOLEAN_KEY, true)
+                }.apply()
 
-                alarmReceiver.setRepeatingAlarm(
-                    this,
-                    AlarmReceiver.TYPE_REPEATING,
-                    repeatTime
-                )
-            }
-            R.id.btn_cancel_repeating_alarm -> {
+                alarmReceiver.setRepeatAlarm(this, AlarmReceiver.EXTRA_TYPE, "09:00")
+                Log.d(TAG, "Alarm On")
+            } else {
+                val editor = sharedPreferences.edit()
+                editor.apply {
+                    putBoolean(BOOLEAN_KEY, false)
+                }.apply()
+
                 alarmReceiver.cancelAlarm(this, AlarmReceiver.TYPE_REPEATING)
+                Log.d(TAG, "Alarm Off")
             }
-            R.id.btn_language -> {
-                val mIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
-                startActivity(mIntent)
-            }
+        }
+        constrains.setOnClickListener {
+            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
-    override fun onDialogDateSet(tag: String?, year: Int, month: Int, dayOfMonth: Int) {
-        val calender = Calendar.getInstance()
-        calender.set(year, month, dayOfMonth)
-
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        tv_once_date.text = dateFormat.format(calender.time)
-    }
-
-    @RequiresApi(Build.VERSION_CODES.N)
-    override fun onDialogTimeSet(tag: String?, hourOfDay: Int, minute: Int) {
-        val calendar = Calendar.getInstance()
-        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
-        calendar.set(Calendar.MINUTE, minute)
-
-        val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-        when (tag) {
-            TIME_PICKER_ONCE_TAG -> tv_once_time.text = dateFormat.format(calendar.time)
-            TIME_PICKER_REPEAT_TAG -> tv_repeating_time.text = dateFormat.format(calendar.time)
-            else -> {
-            }
-        }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 }

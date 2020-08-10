@@ -19,7 +19,7 @@ internal class DatabaseHelper(context: Context) :
         private const val DATABASE_VERSION = 1
 
         private const val SQL_CREATE_TABLE_FAVORITE_USER = "CREATE TABLE $TABLE_NAME" +
-                " ($_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                " ($_ID INTEGER PRIMARY KEY AUTO_INCREMENT," +
                 " $LOGIN TEXT NOT NULL," +
                 " $AVATAR_URL TEXT NOT NULL," +
                 " $TYPE TEXT NOT NULL)"

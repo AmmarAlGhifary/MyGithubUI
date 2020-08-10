@@ -41,5 +41,8 @@
 
     <string name="alarm">Alarm</string>
     <string name="search_hint">Mencari</string>
+    <string name="set_reminder">Pasang Reminder</string>
+
+    <string name="reminder_desc">Kirim notifikasi harian setiap 09.00 Pagi</string>
 
 </resources>

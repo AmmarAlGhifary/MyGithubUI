@@ -40,5 +40,9 @@
 
     <string name="alarm">Alarm</string>
     <string name="search_hint">Searching</string>
+    <string name="set_reminder">Set Reminder</string>
+
+    <string name="reminder_desc">Send daily notification at 09.00 AM</string>
+
 
 </resources>

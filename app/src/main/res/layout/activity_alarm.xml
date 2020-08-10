@@ -1,139 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.settings.AlarmActivity">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constrains"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/one_time_alarm"
-        android:textColor="@android:color/black"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
+        android:layout_height="60dp"
+        android:layout_marginTop="15dp"
+        android:background="?attr/selectableItemBackground"
         android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/btn_once_date"
-            style="@style/Base.Widget.AppCompat.ImageButton"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_date" />
 
         <TextView
-            android:id="@+id/tv_once_date"
+            android:id="@+id/lang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/alarm_date" />
-    </LinearLayout>
+            android:layout_marginStart="24dp"
+            android:text="@string/change_language_setting"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_arrow"
+            app:layout_constraintBottom_toBottomOf="@+id/lang"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.861"
+            app:layout_constraintStart_toEndOf="@+id/lang"
+            app:layout_constraintTop_toTopOf="@+id/lang" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="1dp"
+        android:layout_below="@id/constrains"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@android:color/darker_gray" />
 
-        <ImageButton
-            android:id="@+id/btn_once_time"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_alarm_24" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@id/constrains">
 
         <TextView
-            android:id="@+id/tv_once_time"
+            android:id="@+id/remind"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/alarm_time" />
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/edt_once_message"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:hint="@string/alarm_message"
-        android:inputType="text" />
-
-    <Button
-        android:id="@+id/btn_set_once_alarm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="16dp"
-        android:text="@string/set_one_time_alarm" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/repeating_alarm"
-        android:textColor="@android:color/black"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/btn_repeating_time"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_accsess_time" />
+            android:layout_marginStart="24dp"
+            android:text="@string/set_reminder"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.271" />
 
         <TextView
-            android:id="@+id/tv_repeating_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/alarm_time" />
-    </LinearLayout>
+            android:layout_marginStart="24dp"
+            android:text="@string/reminder_desc"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/remind"
+            app:layout_constraintVertical_bias="0.192" />
 
-    <EditText
-        android:id="@+id/edt_repeating_message"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:hint="@string/alarm_message"
-        android:inputType="text" />
+        <CheckBox
+            android:id="@+id/checkbox_alarm"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="28dp"
+            app:layout_constraintBottom_toBottomOf="@+id/remind"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/remind"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Button
-            android:id="@+id/btn_cancel_repeating_alarm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="@string/cancel_alarm" />
-
-        <Button
-            android:id="@+id/btn_set_repeating_alarm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="@string/set_repeating_alarm" />
-
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_language"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="16dp"
-        android:text="@string/change_language_setting" />
-</LinearLayout>
+</RelativeLayout>
