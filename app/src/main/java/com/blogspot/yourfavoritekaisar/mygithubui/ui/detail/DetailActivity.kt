@@ -3,6 +3,7 @@ package com.blogspot.yourfavoritekaisar.mygithubui.ui.detail
 import android.content.ContentValues
 import android.content.Intent
 import android.database.sqlite.SQLiteConstraintException
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -16,7 +17,10 @@ import com.blogspot.yourfavoritekaisar.mygithubui.R
 import com.blogspot.yourfavoritekaisar.mygithubui.adapter.DetailAdapter
 import com.blogspot.yourfavoritekaisar.mygithubui.adapter.PagerAdapter
 import com.blogspot.yourfavoritekaisar.mygithubui.data.database.DatabaseContract
+import com.blogspot.yourfavoritekaisar.mygithubui.data.database.DatabaseContract.FavoriteUserColumns.Companion.AVATAR_URL
+import com.blogspot.yourfavoritekaisar.mygithubui.data.database.DatabaseContract.FavoriteUserColumns.Companion.LOGIN
 import com.blogspot.yourfavoritekaisar.mygithubui.data.database.FavoriteUserHelper
+import com.blogspot.yourfavoritekaisar.mygithubui.data.model.UserFavorite
 import com.blogspot.yourfavoritekaisar.mygithubui.ui.settings.AlarmActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_detail.*
@@ -36,8 +40,11 @@ class DetailActivity : AppCompatActivity() {
 
     private var menuItem: Menu? = null
     private var isFavorite: Boolean = false
+    private var userFavorite: UserFavorite? = null
+    private lateinit var uriWithId: Uri
 
     companion object {
+        internal val TAG = DetailActivity::class.java.simpleName
         const val EXTRA_USERNAME = "extra_username"
         const val EXTRA_AVATAR_URL = "extra_avatar_url"
         const val EXTRA_TYPE = "extra_type"
@@ -92,7 +99,6 @@ class DetailActivity : AppCompatActivity() {
             }
             R.id.menu_favorite -> {
                 if (isFavorite) removeFavoriteUser() else addFavoriteUser()
-
                 isFavorite = !isFavorite
                 setFavorite()
                 true
@@ -101,6 +107,32 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
+//    private fun addFavoriteUser(){
+//        if (isFavorite) {
+//            userFavorite?.let {
+//                contentResolver.delete(uriWithId, null, null)
+//                Log.d(TAG, "Favorite Deleted")
+//                showSnackbarMessage("${it.login} Unfavorite")
+//                menuItem?.let {
+//                    isFavorite = false
+//                    setFavorite()
+//                }
+//            }
+//        } else {
+//            val values = ContentValues()
+//            values.put(LOGIN, userFavorite?.login)
+//            values.put(AVATAR_URL, userFavorite?.avatar_url)
+//            contentResolver.insert(CONTENT_URI, values)
+//            userFavorite?.login
+//            Log.d(TAG, "Favorite Added")
+//            showSnackbarMessage("Added ${userFavorite?.login} to Favorite")
+//            menuItem?.let {
+//                isFavorite = true
+//                setFavorite()
+//            }
+//        }
+//    }
+
     private fun addFavoriteUser() {
         try {
             login = intent?.getStringExtra(EXTRA_USERNAME).toString()
@@ -108,8 +140,8 @@ class DetailActivity : AppCompatActivity() {
             type = intent?.getStringExtra(EXTRA_TYPE).toString()
 
             val values = ContentValues().apply {
-                put(DatabaseContract.FavoriteUserColumns.LOGIN, login)
-                put(DatabaseContract.FavoriteUserColumns.AVATAR_URL, avatarUrl)
+                put(LOGIN, login)
+                put(AVATAR_URL, avatarUrl)
                 put(DatabaseContract.FavoriteUserColumns.TYPE, type)
             }
             favoriteUserHelper.insert(values)
@@ -139,7 +171,7 @@ class DetailActivity : AppCompatActivity() {
         val favorite = (1..result.count).map {
             result.apply {
                 moveToNext()
-                getInt(result.getColumnIndexOrThrow(DatabaseContract.FavoriteUserColumns.LOGIN))
+                getInt(result.getColumnIndexOrThrow(LOGIN))
             }
         }
         if (favorite.isNotEmpty()) isFavorite

@@ -1,8 +1,12 @@
 package com.blogspot.yourfavoritekaisar.mygithubui.data.database
 
+import android.net.Uri
 import android.provider.BaseColumns
+import com.blogspot.yourfavoritekaisar.mygithubui.data.database.DatabaseContract.FavoriteUserColumns.Companion.TABLE_NAME
 
-internal class DatabaseContract {
+object DatabaseContract {
+    const val AUTHORITY = "com.blogspot.yourfavoritekaisar.mygithubui"
+    private const val SCHEME = "content"
 
     internal class FavoriteUserColumns : BaseColumns {
         companion object {
@@ -13,4 +17,9 @@ internal class DatabaseContract {
             const val TYPE = "type"
         }
     }
+
+    val CONTENT_URI: Uri = Uri.Builder().scheme(SCHEME)
+        .authority(AUTHORITY)
+        .appendPath(TABLE_NAME)
+        .build()
 }

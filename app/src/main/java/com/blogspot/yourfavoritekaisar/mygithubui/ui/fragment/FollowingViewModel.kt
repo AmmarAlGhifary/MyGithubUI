@@ -10,7 +10,6 @@ import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
 import cz.msebera.android.httpclient.Header
 import org.json.JSONArray
-import java.lang.Exception
 
 class FollowingViewModel : ViewModel() {
 
@@ -24,7 +23,7 @@ class FollowingViewModel : ViewModel() {
         val listItem = ArrayList<User>()
         val client = AsyncHttpClient()
 
-        val url = BuildConfig.BASE_URL + "users/$username/followers"
+        val url = BuildConfig.BASE_URL + "users/$username/following"
         val token = BuildConfig.TOKEN
 
         client.addHeader("Authorization", "token $token")

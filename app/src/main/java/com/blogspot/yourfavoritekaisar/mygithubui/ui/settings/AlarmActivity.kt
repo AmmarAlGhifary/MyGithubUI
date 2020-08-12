@@ -50,7 +50,7 @@ class AlarmActivity : AppCompatActivity() {
                     putBoolean(BOOLEAN_KEY, false)
                 }.apply()
 
-                alarmReceiver.cancelAlarm(this, AlarmReceiver.TYPE_REPEATING)
+                alarmReceiver.cancelAlarm(this, AlarmReceiver.TYPE_ALARM_REPEATING)
                 Log.d(TAG, "Alarm Off")
             }
         }

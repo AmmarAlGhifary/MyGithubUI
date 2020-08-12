@@ -22,8 +22,9 @@ import java.util.*
 class AlarmReceiver : BroadcastReceiver() {
 
     companion object {
-        const val TYPE_ONE_TIME = "OneTimeAlarm"
-        const val TYPE_REPEATING = "RepeatingAlarm"
+        const val TYPE_ALARM_REPEATING = "MyGithubUi"
+        const val TYPE_ALARM_ONE_TIME = "OnetTImeAlarm"
+
         const val EXTRA_TYPE = "type"
 
         private const val ID_ONE_TIME = 100
@@ -35,12 +36,16 @@ class AlarmReceiver : BroadcastReceiver() {
     private val TAG = AlarmReceiver::class.java.simpleName
 
     override fun onReceive(context: Context, intent: Intent) {
+        // This method is called when the BroadcastReceiver is receiving an Intent broadcast.
         val type = intent.getStringExtra(EXTRA_TYPE)
 
-        val title =
-            if (type.equals(TYPE_ONE_TIME, ignoreCase = true)) TYPE_ONE_TIME else TYPE_REPEATING
+        val title = if (type.equals(
+                TYPE_ALARM_ONE_TIME,
+                ignoreCase = true
+            )
+        ) TYPE_ALARM_ONE_TIME else TYPE_ALARM_REPEATING
         val notifId =
-            if (type.equals(TYPE_ONE_TIME, ignoreCase = true)) ID_ONE_TIME else ID_REPEATING
+            if (type.equals(TYPE_ALARM_ONE_TIME, ignoreCase = true)) ID_ONE_TIME else ID_REPEATING
 
         showAlarmNotification(context, title, notifId)
         Log.d(TAG, "Alarm on")
@@ -76,21 +81,18 @@ class AlarmReceiver : BroadcastReceiver() {
     fun cancelAlarm(context: Context, type: String) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java)
-
         val requestCode =
-            if (type.equals(TYPE_ONE_TIME, ignoreCase = true)) ID_ONE_TIME else ID_REPEATING
+            if (type.equals(TYPE_ALARM_ONE_TIME, ignoreCase = true)) ID_ONE_TIME else ID_REPEATING
         val pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0)
-
         pendingIntent.cancel()
         alarmManager.cancel(pendingIntent)
         Toast.makeText(context, "Reminder off", Toast.LENGTH_SHORT).show()
         Log.d(TAG, "Alarm Off")
-
     }
 
     private fun showAlarmNotification(context: Context, title: String, notifId: Int) {
         val channelId = "Channel_1"
-        val channelName = "Alarmmanager Channel"
+        val channelName = "Alarmmanager channel"
 
         val notificationIntent = Intent(context, MainActivity::class.java)
         val notificationPendingIntent =
@@ -119,15 +121,16 @@ class AlarmReceiver : BroadcastReceiver() {
 
             notificationManagerCompat.createNotificationChannel(channel)
         }
+
         val notification = builder.build()
         notificationManagerCompat.notify(notifId, notification)
     }
 
-    private fun isDateInvalid(s: String, format: String): Boolean {
+    private fun isDateInvalid(time: String, format: String): Boolean {
         return try {
             val df = SimpleDateFormat(format, Locale.getDefault())
             df.isLenient = false
-            df.parse(s)
+            df.parse(time)
             false
         } catch (e: ParseException) {
             true
