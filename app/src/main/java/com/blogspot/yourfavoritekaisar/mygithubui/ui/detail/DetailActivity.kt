@@ -19,7 +19,7 @@ import com.blogspot.yourfavoritekaisar.mygithubui.adapter.PagerAdapter
 import com.blogspot.yourfavoritekaisar.mygithubui.data.database.DatabaseContract
 import com.blogspot.yourfavoritekaisar.mygithubui.data.database.DatabaseContract.FavoriteUserColumns.Companion.AVATAR_URL
 import com.blogspot.yourfavoritekaisar.mygithubui.data.database.DatabaseContract.FavoriteUserColumns.Companion.LOGIN
-import com.blogspot.yourfavoritekaisar.mygithubui.data.database.FavoriteUserHelper
+import com.blogspot.yourfavoritekaisar.mygithubui.data.helper.FavoriteUserHelper
 import com.blogspot.yourfavoritekaisar.mygithubui.data.model.UserFavorite
 import com.blogspot.yourfavoritekaisar.mygithubui.ui.settings.AlarmActivity
 import com.google.android.material.snackbar.Snackbar
@@ -174,7 +174,7 @@ class DetailActivity : AppCompatActivity() {
                 getInt(result.getColumnIndexOrThrow(LOGIN))
             }
         }
-        if (favorite.isNotEmpty()) isFavorite
+        isFavorite = favorite.isNotEmpty()
     }
 
     private fun setFavorite() {

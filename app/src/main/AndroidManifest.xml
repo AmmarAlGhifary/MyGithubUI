@@ -4,6 +4,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <permission
+        android:name="com.blogspot.yourfavoritekaisar.mygithubui.WRITE_DATABASE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.blogspot.yourfavoritekaisar.mygithubui.READ_DATABASE"
+        android:protectionLevel="normal" />
 
     <application
         android:icon="@drawable/ic_logo_app"
@@ -11,6 +17,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <provider
+            android:name=".provider.GitProvider"
+            android:authorities="com.blogspot.yourfavoritekaisar.mygithubui"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="com.blogspot.yourfavoritekaisar.mygithubui.WRITE_DATABASE"
+            android:writePermission="com.blogspot.yourfavoritekaisar.mygithubui.READ_DATABASE" />
+
         <activity android:name=".ui.settings.AlarmActivity" />
         <activity android:name=".ui.favorite.FavoriteActivity" />
         <activity android:name=".ui.detail.DetailActivity" />

@@ -7,7 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blogspot.yourfavoritekaisar.mygithubui.R
 import com.blogspot.yourfavoritekaisar.mygithubui.adapter.FavoriteAdapter
-import com.blogspot.yourfavoritekaisar.mygithubui.data.database.FavoriteUserHelper
+import com.blogspot.yourfavoritekaisar.mygithubui.data.database.DatabaseContract
+import com.blogspot.yourfavoritekaisar.mygithubui.data.helper.FavoriteUserHelper
 import com.blogspot.yourfavoritekaisar.mygithubui.data.helper.MappingHelper
 import com.blogspot.yourfavoritekaisar.mygithubui.data.model.UserFavorite
 import com.blogspot.yourfavoritekaisar.mygithubui.ui.detail.DetailActivity
@@ -41,6 +42,21 @@ class FavoriteActivity : AppCompatActivity() {
         favoriteUserHelper = FavoriteUserHelper.getInstance(applicationContext)
         favoriteUserHelper.open()
 
+        GlobalScope.launch(Dispatchers.Main) {
+            val differedGit = async(Dispatchers.IO) {
+                val cursor =
+                    contentResolver?.query(DatabaseContract.CONTENT_URI, null, null, null, null)
+                MappingHelper.mapCursorToArrayList(cursor)
+            }
+
+            val fav = differedGit.await()
+            if (fav.size > 0) {
+                favoriteAdapter.listFavoriteUser
+            } else {
+                favoriteAdapter.listFavoriteUser = ArrayList()
+            }
+            showListFavorite()
+        }
         if (savedInstanceState == null) {
             loadFavoriteAsync()
         } else {

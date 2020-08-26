@@ -1,4 +1,4 @@
-package com.blogspot.yourfavoritekaisar.mygithubui.data.database
+package com.blogspot.yourfavoritekaisar.mygithubui.data.helper
 
 import android.content.ContentValues
 import android.content.Context
@@ -8,10 +8,14 @@ import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
 import com.blogspot.yourfavoritekaisar.mygithubui.data.database.DatabaseContract.FavoriteUserColumns.Companion.LOGIN
 import com.blogspot.yourfavoritekaisar.mygithubui.data.database.DatabaseContract.FavoriteUserColumns.Companion.TABLE_NAME
+import com.blogspot.yourfavoritekaisar.mygithubui.data.database.DatabaseHelper
 
 class FavoriteUserHelper(context: Context) {
 
-    private var dataBaseHelper: DatabaseHelper = DatabaseHelper(context)
+    private var dataBaseHelper: DatabaseHelper =
+        DatabaseHelper(
+            context
+        )
     private lateinit var database: SQLiteDatabase
 
     companion object {
@@ -19,9 +23,13 @@ class FavoriteUserHelper(context: Context) {
         private const val DATABASE_TABLE = TABLE_NAME
         private var INSTANCE: FavoriteUserHelper? = null
 
-        fun getInstance(context: Context): FavoriteUserHelper = INSTANCE ?: synchronized(this) {
-            INSTANCE ?: FavoriteUserHelper(context)
-        }
+        fun getInstance(context: Context): FavoriteUserHelper = INSTANCE
+            ?: synchronized(this) {
+                INSTANCE
+                    ?: FavoriteUserHelper(
+                        context
+                    )
+            }
     }
 
     @Throws(SQLException::class)
